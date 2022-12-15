@@ -44,15 +44,15 @@ def get_product(db: Session, product_id: int):
     return db.query(models.Product).filter(models.Product.id==product_id).first()
 
 
-def create_disprod(db: Session, disprod:schemas.DisProdCreate):
-    db_disprod=models.DisProd(dishes_id=disprod.dishes_id, product_id=disprod.product_id)
-    db.add(db_disprod)
-    db.commit()
-    db.refresh(db_disprod)
-    return db_disprod
+# def create_disprod(db: Session, disprod:schemas.DisProdCreate):
+#     db_disprod=models.DisProd(dishes_id=disprod.dishes_id, product_id=disprod.product_id)
+#     db.add(db_disprod)
+#     db.commit()
+#     db.refresh(db_disprod)
+#     return db_disprod
 
-def get_disprod(db: Session, disprod_id: int):
-    return db.query(models.DisProd).filter(models.DisProd.id==disprod_id).first()
+# def get_disprod(db: Session, disprod_id: int):
+#     return db.query(models.DisProd).filter(models.DisProd.id==disprod_id).first()
 
 
 def get_dishesL(db:Session, skip: int=0, limit:int=100):
@@ -67,5 +67,5 @@ def get_prescriptionL(db:Session, skip: int=0, limit:int=100):
 def get_dailyCookingL(db:Session, skip: int=0, limit:int=100):
     return db.query(models.DailyCooking).offset(skip).limit(limit).all()
 
-def get_disprodL(db:Session, skip: int=0, limit:int=100):
-    return db.query(models.DailyCooking).offset(skip).limit(limit).all()
+# def get_disprodL(db:Session, skip: int=0, limit:int=100):
+#     return db.query(models.DailyCooking).offset(skip).limit(limit).all()

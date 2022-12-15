@@ -12,7 +12,7 @@ app = FastAPI()
 
 
 # Dependency
-def get_db():
+def get_db():# pragma: no cover
     """
     Задаем зависимость к БД. При каждом запросе будет создаваться новое
     подключение.
@@ -96,23 +96,23 @@ def read_prescription(prescription_id:int, db: Session=Depends(get_db)):
 
 
 # ////////////////////////////////////////////////////////////////
-@app.post('/disprod/', response_model=schemas.DisProd)
-def create_disprod(disprod: schemas.DisProd, db:Session = Depends(get_db)):
-    return crud.create_disprod(db=db, disprod=disprod)
+# @app.post('/disprod/', response_model=schemas.DisProd)
+# def create_disprod(disprod: schemas.DisProd, db:Session = Depends(get_db)):
+#     return crud.create_disprod(db=db, disprod=disprod)
 
-@app.get("/disprod/", response_model=list[schemas.DisProd])
-def get_disprod(skip: int=0, limit: int=100, db:Session=Depends(get_db)):
-    disprod=crud.get_disprodL(db, skip=skip, limit=limit)
-    return disprod
+# @app.get("/disprod/", response_model=list[schemas.DisProd])
+# def get_disprod(skip: int=0, limit: int=100, db:Session=Depends(get_db)):
+#     disprod=crud.get_disprodL(db, skip=skip, limit=limit)
+#     return disprod
 
-@app.get("/disprod/{disprod_id}", response_model=schemas.DisProd)
-def read_disprod(disprod_id:int, db: Session=Depends(get_db)):
-    db_disprod=crud.get_disprod(db, disprod_id=disprod_id)
-    if db_disprod is None:
-        raise HTTPException(status_code=404, detail="Not found")
-    return db_disprod
+# @app.get("/disprod/{disprod_id}", response_model=schemas.DisProd)
+# def read_disprod(disprod_id:int, db: Session=Depends(get_db)):
+#     db_disprod=crud.get_disprod(db, disprod_id=disprod_id)
+#     if db_disprod is None:
+#         raise HTTPException(status_code=404, detail="Not found")
+#     return db_disprod
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=5000, log_level="info", reload=True)
+    uvicorn.run("main:app", port=5000, log_level="info", reload=True)# pragma: no cover
 
